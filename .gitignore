@@ -1,0 +1,23 @@
+# PyCharm
+.idea
+
+# MAC OS
+.DS_Store
+
+# pytest
+.coverage
+.pytest
+.pytest_cache
+
+# Python
+*__pycache__*
+*.pth
+
+# Redundant files
+.nfs*
+
+# Log files
+log
+
+# Trash
+*.nfs*
