@@ -59,7 +59,15 @@ export PYTHONPATH="${PYTHONPATH}:/path/to/this/dir"
 
 Here are code snippets to run inference on the models shown above. These examples show usage with 8 GPUs. You could run the inference command with 1/2/4 GPUs by updating the nproc_per_node argument. 
 
-*Checkpoints coming soon!*
+Our pretrained models can be downloaded from here and should be placed inside the directory `checkpoints/`. See usage below.
+
+[distance_measures_regressor.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/distance_measures_regressor.pth)
+
+[hrnet18_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet18_IF_checkpoint.pth)
+
+[hrnet48_OCR_HMS_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_HMS_IF_checkpoint.pth)
+
+[hrnet48_OCR_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_IF_checkpoint.pth)
 
 * HRNet-18-IF
 ```bash
