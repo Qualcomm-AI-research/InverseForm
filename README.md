@@ -1,6 +1,6 @@
 # InverseForm
 
-This repository provides the InverseForm module.
+This repository contains a version of the InverseForm module.
 
 Shubhankar Borse, Ying Wang, Yizhe Zhang, Fatih Porikli, "InverseForm: A Loss Function for Structured Boundary-Aware Segmentation
 ", CVPR 2021.[[arxiv]](https://arxiv.org/abs/2104.02745)
@@ -34,11 +34,11 @@ This repository contains the implementation of InverseForm module presented in t
 
 
 
-| Model           | mIoU (trained w/o InverseForm)  | mIoU (trained w/ InverseForm)   |
-| :-------------: | :-----------------------------: | :-----------------------------: |
-| HRNet-18        | 77.0%                           | 77.6%                           |
-| OCRNet-48       | 86.0%                           | 86.3%                           |
-| OCRNet-48-HMS   | 86.7%                           | 87.0%                           |
+| Model           | mIoU (trained w/o InverseForm)  | mIoU (trained w/ InverseForm)   | Checkpoint |
+| :-------------: | :-----------------------------: | :-----------------------------: | :-----------------------------: |
+| HRNet-18        | 77.0%                           | 77.6% |[hrnet18_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet18_IF_checkpoint.pth)|
+| OCRNet-48       | 86.0%                           | 86.3% | [hrnet48_OCR_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_IF_checkpoint.pth)|
+| OCRNet-48-HMS   | 86.7%                           | 87.0%                           | [hrnet48_OCR_HMS_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_HMS_IF_checkpoint.pth) |
 
 
 ## Setup environment 
@@ -59,15 +59,10 @@ export PYTHONPATH="${PYTHONPATH}:/path/to/this/dir"
 
 Here are code snippets to run inference on the models shown above. These examples show usage with 8 GPUs. You could run the inference command with 1/2/4 GPUs by updating the nproc_per_node argument. 
 
-Our pretrained models can be downloaded from here and should be placed inside the directory `checkpoints/`. See usage below.
+Our pretrained InverseForm module can be downloaded from here and should be placed inside the directory `checkpoints/`. See usage below.
 
 [distance_measures_regressor.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/distance_measures_regressor.pth)
 
-[hrnet18_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet18_IF_checkpoint.pth)
-
-[hrnet48_OCR_HMS_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_HMS_IF_checkpoint.pth)
-
-[hrnet48_OCR_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_IF_checkpoint.pth)
 
 * HRNet-18-IF
 ```bash

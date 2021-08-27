@@ -184,7 +184,7 @@ class InverseTransform2D(nn.Module):
             param.requires_grad = False            
 
     def forward(self, inputs, targets):   
-        inputs = torch.ge(inputs, 0.5).float()
+        inputs = F.log_softmax(inputs) 
             
         inputs = F.interpolate(inputs, size=(self.resized_dim, 2*self.resized_dim), mode='bilinear')
         targets = F.interpolate(targets, size=(self.resized_dim, 2*self.resized_dim), mode='bilinear')
