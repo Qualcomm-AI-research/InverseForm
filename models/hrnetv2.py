@@ -266,6 +266,8 @@ class HighResolutionNet(nn.Module):
     def __init__(self, **kwargs):
         if cfg.MODEL.HR18:
             extra = cfg.MODEL.OCR18_EXTRA
+        elif cfg.MODEL.HR16:
+            extra = cfg.MODEL.OCR16_EXTRA
         else:
             extra = cfg.MODEL.OCR_EXTRA
             

@@ -174,6 +174,42 @@ __C.MODEL.OCR18_EXTRA.STAGE4.NUM_BLOCKS = [2, 2, 2, 2]
 __C.MODEL.OCR18_EXTRA.STAGE4.NUM_CHANNELS = [18, 36, 72, 144]
 __C.MODEL.OCR18_EXTRA.STAGE4.FUSE_METHOD = 'SUM'
 
+
+'''
+Model definition for hrnet-16
+'''
+
+__C.MODEL.OCR16_EXTRA = AttrDict()
+__C.MODEL.OCR16_EXTRA.FINAL_CONV_KERNEL = 1
+__C.MODEL.OCR16_EXTRA.STAGE1 = AttrDict()
+__C.MODEL.OCR16_EXTRA.STAGE1.NUM_MODULES = 1
+__C.MODEL.OCR16_EXTRA.STAGE1.NUM_RANCHES = 1
+__C.MODEL.OCR16_EXTRA.STAGE1.BLOCK = 'BOTTLENECK'
+__C.MODEL.OCR16_EXTRA.STAGE1.NUM_BLOCKS = [2]
+__C.MODEL.OCR16_EXTRA.STAGE1.NUM_CHANNELS = [64]
+__C.MODEL.OCR16_EXTRA.STAGE1.FUSE_METHOD = 'SUM'
+__C.MODEL.OCR16_EXTRA.STAGE2 = AttrDict()
+__C.MODEL.OCR16_EXTRA.STAGE2.NUM_MODULES = 1
+__C.MODEL.OCR16_EXTRA.STAGE2.NUM_BRANCHES = 2
+__C.MODEL.OCR16_EXTRA.STAGE2.BLOCK = 'BASIC'
+__C.MODEL.OCR16_EXTRA.STAGE2.NUM_BLOCKS = [2, 2]
+__C.MODEL.OCR16_EXTRA.STAGE2.NUM_CHANNELS = [16, 32]
+__C.MODEL.OCR16_EXTRA.STAGE2.FUSE_METHOD = 'SUM'
+__C.MODEL.OCR16_EXTRA.STAGE3 = AttrDict()
+__C.MODEL.OCR16_EXTRA.STAGE3.NUM_MODULES = 3
+__C.MODEL.OCR16_EXTRA.STAGE3.NUM_BRANCHES = 3
+__C.MODEL.OCR16_EXTRA.STAGE3.BLOCK = 'BASIC'
+__C.MODEL.OCR16_EXTRA.STAGE3.NUM_BLOCKS = [2, 2, 2]
+__C.MODEL.OCR16_EXTRA.STAGE3.NUM_CHANNELS = [16, 32, 64]
+__C.MODEL.OCR16_EXTRA.STAGE3.FUSE_METHOD = 'SUM'
+__C.MODEL.OCR16_EXTRA.STAGE4 = AttrDict()
+__C.MODEL.OCR16_EXTRA.STAGE4.NUM_MODULES = 2
+__C.MODEL.OCR16_EXTRA.STAGE4.NUM_BRANCHES = 4
+__C.MODEL.OCR16_EXTRA.STAGE4.BLOCK = 'BASIC'
+__C.MODEL.OCR16_EXTRA.STAGE4.NUM_BLOCKS = [2, 2, 2, 2]
+__C.MODEL.OCR16_EXTRA.STAGE4.NUM_CHANNELS = [16, 32, 64, 128]
+__C.MODEL.OCR16_EXTRA.STAGE4.FUSE_METHOD = 'SUM'
+
 def torch_version_float():
     version_str = torch.__version__
     version_re = re.search(r'^([0-9]+\.[0-9]+)', version_str)
@@ -184,7 +220,7 @@ def torch_version_float():
     return version
 
 
-def assert_and_infer_cfg(result_dir, global_rank, apex=True, syncbn=True, arch='ocrnet.AuxHRNet', hrnet_base='18',
+def assert_and_infer_cfg(result_dir, global_rank, apex=True, syncbn=True, arch='ocrnet.AuxHRNet', hrnet_base=18,
                          fp16=True, has_edge=False, make_immutable=True, train_mode=True):
     """Call this function in your script after you have finished setting all cfg
     values that are necessary (e.g., merging a config from a file, merging
@@ -227,9 +263,14 @@ def assert_and_infer_cfg(result_dir, global_rank, apex=True, syncbn=True, arch='
     cfg.MODEL.MSCALE = ('mscale' in arch.lower() or 'attnscale' in
                         arch.lower())
                         
-    cfg.MODEL.HR18 = (hrnet_base=='18')    
-    cfg.MODEL.DOWN_CONV = False
-
+    cfg.MODEL.HR18 = (hrnet_base==18)    
+    cfg.MODEL.HR16 = (hrnet_base==16) 
+    
+    if cfg.MODEL.HR16:
+        cfg.MODEL.DOWN_CONV = True
+    else:
+        cfg.MODEL.DOWN_CONV = False
+        
     def str2list(s):
         alist = s.split(',')
         alist = [float(x) for x in alist]

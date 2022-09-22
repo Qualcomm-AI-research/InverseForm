@@ -37,6 +37,7 @@ This repository contains the implementation of InverseForm module presented in t
 | Model           | mIoU (trained w/o InverseForm)  | mIoU (trained w/ InverseForm)   | Checkpoint |
 | :-------------: | :-----------------------------: | :-----------------------------: | :-----------------------------: |
 | HRNet-18        | 77.0%                           | 77.6% |[hrnet18_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet18_IF_checkpoint.pth)|
+| HRNet-16-Slim   | 76.1%                           | 77.8% |[hr16s_4k_slim.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hr16s_4k_slim.pth)|
 | OCRNet-48       | 86.0%                           | 86.3% | [hrnet48_OCR_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_IF_checkpoint.pth)|
 | OCRNet-48-HMS   | 86.7%                           | 87.0%                           | [hrnet48_OCR_HMS_IF_checkpoint.pth](https://github.com/Qualcomm-AI-research/InverseForm/releases/download/v1.0/hrnet48_OCR_HMS_IF_checkpoint.pth) |
 
@@ -67,6 +68,10 @@ Our pretrained InverseForm module can be downloaded from here and should be plac
 * HRNet-18-IF
 ```bash
 python -m torch.distributed.launch --nproc_per_node=8 experiment/validation.py --output_dir "/path/to/output/dir" --model_path "checkpoints/hrnet18_IF_checkpoint.pth" --has_edge True
+```
+* HRNet-16-Slim-IF
+```bash
+python -m torch.distributed.launch --nproc_per_node=8 experiment/validation.py --output_dir "/path/to/output/dir" --model_path "checkpoints/hr16s_4k_slim.pth" --hrnet_base "16" --arch "lighthrnet.HRNet16" --has_edge True
 ```
 * OCRNet-48-IF
 ```bash

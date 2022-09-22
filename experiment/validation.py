@@ -73,7 +73,7 @@ def inference(val_loader, net, arch, loss_fn, epoch, calc_metrics=True):
 
 
 def main(output_dir, model_path, has_edge=False, model_summary=False, arch='ocrnet.AuxHRNet', 
-         hrnet_base='18', num_workers=4, split='val', batch_size=2, crop_size='1024,2048', 
+         hrnet_base=18, num_workers=4, split='val', batch_size=2, crop_size='1024,2048', 
          apex=True, syncbn=True, fp16=True, local_rank=0):
 
     #Distributed processing
