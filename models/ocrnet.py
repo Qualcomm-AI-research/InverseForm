@@ -104,6 +104,8 @@ class HighResolutionHead_NoSigmoid(nn.Module):
     def __init__(self, backbone_channels=[48, 96, 192, 384], num_outputs=1):
         if cfg.MODEL.HR18:
             backbone_channels=[18, 36, 72, 144]
+        elif cfg.MODEL.HR16:
+            backbone_channels=[16, 32, 64, 128]
 
         super(HighResolutionHead_NoSigmoid, self).__init__()
         last_inp_channels = sum(backbone_channels)
@@ -133,6 +135,8 @@ class HighResolutionHead(nn.Module):
     def __init__(self, backbone_channels=[48, 96, 192, 384], num_outputs=1):
         if cfg.MODEL.HR18:
             backbone_channels=[18, 36, 72, 144]
+        elif cfg.MODEL.HR16:
+            backbone_channels=[16, 32, 64, 128]
 
         super(HighResolutionHead, self).__init__()
         last_inp_channels = sum(backbone_channels)
